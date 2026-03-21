@@ -58,16 +58,9 @@ a {
   margin: 0 auto;
   display: flex;
   align-items: center;
-  /* Importante: Justify-content agora distribui os 3 blocos */
   justify-content: space-between; 
   padding: 0 2rem;
 }
-
-/* ESTRATÉGIA DE CENTRALIZAÇÃO:
-   Damos flex: 1 para os containers das pontas. 
-   Isso faz com que a Esquerda e a Direita ocupem o mesmo espaço,
-   empurrando o Menu automaticamente para o centro exato.
-*/
 
 .nav__logo-container {
   flex: 1; /* Ocupa 1 parte do espaço */
@@ -93,8 +86,8 @@ a {
 
 /* LOGO */
 .nav__logo img {
-  height: 150px; /* Ajustado para não estourar os 10rem (160px) do header */
-  width: auto;   /* Largura automática para não achatar */
+  height: 150px; 
+  width: auto;  
   display: block;
 }
 
@@ -154,7 +147,7 @@ a {
   display: flex;
   justify-content: flex-end;
   z-index: 10;
-  min-width: 300px; /* Mantém o equilíbrio com o tamanho da logo */
+  min-width: 300px; 
 }
 
 .nav__ticket-btn {
@@ -179,7 +172,7 @@ a {
 .nav__ticket-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
-  color: #fff; /* Garante que o texto continue branco */
+  color: #fff; 
 }
 
 /* Ajuste para mobile */
@@ -234,7 +227,7 @@ a {
   z-index: 1; /* importante */
 }
 
-/* 🔥 DIVISOR INCLINADO (O QUE VOCÊ QUERIA) */
+/* OVERLAY CLARO */
 .home__container::before {
   content: "";
   position: absolute;
@@ -243,7 +236,7 @@ a {
   width: 100%;
   height: 100px;
 
-  background: #1a1a1a; /* usa sua cor do site */
+  background: #1a1a1a; 
 
   clip-path: polygon(0 40%, 100% 0%, 100% 100%, 0% 100%); 
   
@@ -287,36 +280,34 @@ a {
 
 /* ===== PATROCINADORES ===== */
 
-/* FAIXA DE PATROCINADORES */
-.sponsors { 
+.sponsors {
   width: 100%;
-  background: #fff;
   overflow: hidden;
+  background: #fff;
   padding: 20px 0;
   position: relative;
-  z-index: 5;
+  display: flex; /* Garante alinhamento */
 }
 
-/* FAIXA QUE SE MOVE */
 .sponsors__track {
   display: flex;
-  width: max-content;
+  gap: 40px; 
+  width: max-content; 
   animation: scroll 20s linear infinite;
+  will-change: transform;
 }
 
 /* LOGOS */
 .sponsors__track img {
   height: 60px;
-  margin: 0 40px;
   object-fit: contain;
   filter: grayscale(100%);
   opacity: 0.8;
-  transition: 0.3s;
+  transition: 0.3s; 
+  flex-shrink: 0;
 }
 
-/* HOVER */
-/*Muda a cord quando passa o mouse*/
- .sponsors__track img:hover { 
+.sponsors__track img:hover { 
   filter: grayscale(0%);
   opacity: 1;
   transform: scale(1.1);
@@ -324,12 +315,35 @@ a {
 
 /* ANIMAÇÃO */
 @keyframes scroll {
-  from {
-    transform: translateX(0); 
+  0% {
+    transform: translateX(0);
   }
-  to {
-    transform: translateX(-50%); 
+  100% {
+    transform: translateX(calc(-50% - 20px)); 
   }
+}
+
+/* Gradientes laterais para suavizar a entrada/saída */
+
+.sponsors::before,
+.sponsors::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.sponsors::before {
+  left: 0;
+  background: linear-gradient(to right, #fff, transparent);
+}
+
+.sponsors::after {
+  right: 0;
+  background: linear-gradient(to left, #fff, transparent);
 }
 
 /* ===== SLIDER ===== */
@@ -355,7 +369,7 @@ a {
   max-width: 900px;
   margin: 50px auto; 
 
-  border: 6px solid #000; /* 🔥 borda preta */
+  border: 6px solid #000; 
   border-radius: 20px;
 }
 
@@ -462,8 +476,8 @@ a {
 .carousel__image img {
   width: 400px;
   border-radius: 20px;
-  transform: rotate(-5deg); /* 🔥 efeito inclinado */
-  box-shadow: 10px 10px 0 #000; /* 🔥 sombra estilo 3D */
+  transform: rotate(-5deg); 
+  box-shadow: 10px 10px 0 #000; 
 }
 .carousel__image {
   position: relative;
@@ -1177,8 +1191,6 @@ summary:hover {
     
 }
 
-
-
 .socials a {
     font-size: 20px;
     margin-right: 10px;
@@ -1189,7 +1201,6 @@ summary:hover {
     margin-top: 30px;
     color: #777;
 }
-
 
 /* ===== SOCIALS ===== */
 
