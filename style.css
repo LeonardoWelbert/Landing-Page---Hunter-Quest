@@ -154,25 +154,39 @@ a {
   display: inline-flex;
   align-items: center;
   column-gap: .5rem;
-  background: linear-gradient(45deg, #FFD500, #FF8C00);
-    color: #000;
-  color: #fff;
+  background: linear-gradient(45deg, #ffffff, #ffffff);
+  color: #000000;
   padding: .8rem 1.5rem;
   border-radius: 50px;
   font-weight: 600;
   font-size: .9rem;
-  transition: .3s;
-  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+
+    /* ESSENCIAIS PARA A CAMADA */
+    z-index: 1; /* FICA EM CIMA DA CAMADA */
+    transform-style: preserve-3d; 
 }
 
-.nav__ticket-btn i {
+.nav__ticket-btn i { 
   font-size: 1.2rem;
 }
 
-.nav__ticket-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
-  color: #fff; 
+/*CAMADA*/
+
+.nav__ticket-btn::after {  
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 100%;
+    height: 100%;
+    background:  #FF8C00;
+    border-radius: 20px;
+    
+    /* FICA ATRÁS DO BOTÃO */
+    z-index: -1; 
+    transform: translateZ(-1px); /* Garante fisicamente que está atrás */
+    
+    transition: 0.3s; 
 }
 
 /* Ajuste para mobile */
@@ -398,7 +412,7 @@ a {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: linear-gradient(45deg, #FF8C00, #7B2CBF);
+  background: linear-gradient(45deg, #FF8C00, #bf2c2c);
   border: none;
   color: white;
   font-size: 2rem;
@@ -422,27 +436,27 @@ a {
 
 /* ===== SOBRE O EVENTO ===== */
 
-.carousel {
+.carousel { 
   width: 100%;
   background: #eee;
   padding: 60px 0;
   position: relative;
 }
 
-.carousel__container {
+.carousel__container { 
   max-width: 1100px;
   margin: auto;
   overflow: hidden;
   position: relative;
 }
 
-.carousel__track {
+.carousel__track { 
   display: flex;
   transition: transform 0.5s ease;
 }
 
 /* ITEM */
-.carousel__item {
+.carousel__item { 
   min-width: 100%;
   display: flex;
   align-items: center;
@@ -483,7 +497,7 @@ a {
   position: relative;
 }
 
-.carousel__image::after {
+.carousel__image::after { 
   content: "";
   position: absolute;
   top: 10px;
@@ -522,7 +536,7 @@ a {
 
 /* ===== CONVIDADOS ===== */
 
-.ConvidadosEspeciais {
+.ConvidadosEspeciais { 
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
@@ -1111,6 +1125,7 @@ summary:hover {
     display: flex;
     justify-content: center;
     gap: 10px;
+    align-items: center; 
 }
 
 .newsletter input {
@@ -1118,6 +1133,7 @@ summary:hover {
     width: 300px;
     border: none;
     outline: none;
+    border-radius: 4px; 
 }
 
 .newsletter button {
@@ -1126,12 +1142,42 @@ summary:hover {
     padding: 12px 20px;
     font-weight: bold;
     cursor: pointer;
+    
+    position: relative; 
+    z-index: 1;
+    transform-style: preserve-3d;
+    transition: 0.2s;
 }
 
-.newsletter button:hover {
-    transform: scale(1.05);
-    opacity: 0.9;
+/* CAMADA DE SOMBRA */
+.newsletter button::after {  
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    
+    /* Joga para trás do laranja */
+    z-index: -1; 
+    transform: translateZ(-1px); 
+    
+    transition: 0.3s; 
 }
+
+/* EFEITO AO PASSAR O MOUSE */
+.newsletter button:hover::after {
+    top: 0;
+    left: 0;
+}
+
+.newsletter button:active {
+    transform: translate(2px, 2px);
+}
+
+
+
 
 /* ===== FOOTER ===== */
 .footer {
@@ -1176,7 +1222,7 @@ summary:hover {
     
 }
 .footer-col :hover {
-    color: #FFD500;
+    color: #007BFF;
 }
 
 
@@ -1262,19 +1308,49 @@ summary:hover {
 }
 
 /* BOTÃO */
+
 .btn-ingresso {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 20px;
     background: linear-gradient(45deg, #FFD500, #FF8C00);
     color: #000;
-    padding: 10px 18px;
-    border-radius: 8px;
     font-weight: bold;
-    text-decoration: none;
-    transition: 0.3s;
+    cursor: pointer;
+    position: relative;
+    border: none;
+    
+    /* ESSENCIAIS PARA A CAMADA */
+    z-index: 1; /* FICA EM CIMA DA CAMADA */
+    transform-style: preserve-3d; 
 }
 
-.btn-ingresso:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(255, 213, 0, 0.7);
+/*CAMADA*/
+
+.btn-ingresso::after {  
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    border-radius: 20px;
+    
+    /* FICA ATRÁS DO BOTÃO */
+    z-index: -1; 
+    transform: translateZ(-1px); /* Garante fisicamente que está atrás */
+    
+    transition: 0.3s; 
+}
+
+/* Efeito extra: a sombra some ou move ao clicar */
+.btn-ingresso:active { 
+    left: 2px; 
+}
+.btn-ingresso:active::after { 
+    top: 0;
+    left: 0;
 }
 
 /* BOTÃO FECHAR */
